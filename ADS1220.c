@@ -158,7 +158,11 @@ void initializeThreeWireRTD( void ){
     SS_SetLow(); //slave select pin low
     __delay_us(1);
     
-    performInternalOffset();        
+    /*Current offset function does not work as implemented, need external voltage reference which 
+    is not functional currently due to IC switch being closed; also need RTD connection in place
+    to allow current path.  Due to these requirements, and the minimal impact this has to the reading
+    accuracy, the performInternalOffset function is not used at this time*/
+    //performInternalOffset();  
        
     //tell the chip to write to register and send 4 bytes for register settings
     garbage = SPI1_Exchange8bit(ADS1220_WRITE_REG);
